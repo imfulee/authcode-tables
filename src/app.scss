@@ -1,0 +1,22 @@
+div.content_body {
+    padding-top: 1em;
+    display: grid;
+    row-gap: 1em;
+}
+
+div#authcode_controls {
+    display: grid;
+    grid-template-columns: 10% 60% auto;
+}
+
+div#add_authcode_button{
+    place-self: center;
+}
+
+table#authcode_table {
+    overflow-x: auto;
+}
+
+#searchbar_inputgroup {
+    grid-column-start: 3;
+}
