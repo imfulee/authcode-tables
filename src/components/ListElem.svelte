@@ -16,7 +16,7 @@
 	let open = false;
 	const toggle = () => (open = !open);
 	function handle_edit() {
-		if (!authcode.auth_start_date || !authcode.auth_end_date) {
+		if (!document.getElementById("auth_start_date").value || !document.getElementById("auth_end_date").value) {
 			alert('必須輸入日期');
 		} else if (authcode.auth_end_date >= authcode.auth_start_date) {
 			edit_authcode(
@@ -29,7 +29,8 @@
 				authcode.auth_start_date,
 				authcode.auth_end_date,
 				authcode.system_name,
-				authcode.case_name
+				authcode.case_name,
+				authcode.remarks
 			);
 
 			toggle();
@@ -39,14 +40,15 @@
 	}
 </script>
 
-<td>{authcode.product_name}</td>
-<td>{authcode.system_num}</td>
-<td>{authcode.company_name}</td>
-<td>{authcode.auth_num}</td>
-<td>{`${!authcode.auth_start_date ? '' : authcode.auth_start_date}`}</td>
-<td>{`${!authcode.auth_end_date ? '' : authcode.auth_end_date}`}</td>
-<td>{authcode.system_name}</td>
-<td>{authcode.case_name}</td>
+<td class="text-nowrap">{authcode.product_name}</td>
+<td class="text-nowrap">{authcode.system_num}</td>
+<td class="text-nowrap">{authcode.company_name}</td>
+<td class="text-nowrap">{authcode.auth_num}</td>
+<td class="text-nowrap">{`${!authcode.auth_start_date ? '' : authcode.auth_start_date}`}</td>
+<td class="text-nowrap">{`${!authcode.auth_end_date ? '' : authcode.auth_end_date}`}</td>
+<td class="text-nowrap">{authcode.system_name}</td>
+<td class="text-nowrap">{authcode.case_name}</td>
+<td class="text-nowrap">{`${!authcode.remarks ? '' : authcode.remarks}`}</td>
 <td>
 	<Button color="primary" on:click={() => toggle()}>
 		<Icon name="pencil-square" />
@@ -133,6 +135,16 @@
 						id="case_name"
 						placeholder=""
 						bind:value={authcode.case_name}
+					/>
+				</FormGroup>
+				<FormGroup>
+					<Label for="system_name">備注</Label>
+					<Input
+						type="text"
+						name="case_name"
+						id="case_name"
+						placeholder=""
+						bind:value={authcode.remarks}
 					/>
 				</FormGroup>
 			</Form>

@@ -12,9 +12,9 @@ export const load_authcode = async() => {
 }
 load_authcode();
 
-export async function add_authcode(product_name, system_num, auth_num, company_name, auth_start_date, auth_end_date, system_name, case_name) {
+export async function add_authcode(product_name, system_num, auth_num, company_name, auth_start_date, auth_end_date, system_name, case_name, remarks) {
     let created_at = null;
-    const { data, error } = await supabase.from('authcode_table').insert([{ created_at, product_name, system_num, auth_num, company_name, auth_start_date, auth_end_date, system_name, case_name }]);
+    const { data, error } = await supabase.from('authcode_table').insert([{ created_at, product_name, system_num, auth_num, company_name, auth_start_date, auth_end_date, system_name, case_name, remarks }]);
 
     if (error) {
         return console.error(error);
@@ -23,7 +23,7 @@ export async function add_authcode(product_name, system_num, auth_num, company_n
     return authcodes.update((cur) => [...cur, data[0]]);
 }
 
-export async function edit_authcode(id, created_at, product_name, system_num, auth_num, company_name, auth_start_date, auth_end_date, system_name, case_name) {
+export async function edit_authcode(id, created_at, product_name, system_num, auth_num, company_name, auth_start_date, auth_end_date, system_name, case_name, remarks) {
     const { error } = await supabase.from('authcode_table').update({
         created_at,
         product_name,
@@ -33,7 +33,8 @@ export async function edit_authcode(id, created_at, product_name, system_num, au
         auth_start_date,
         auth_end_date,
         system_name,
-        case_name
+        case_name, 
+        remarks
     }).match({ id });
     if (error) {
         return console.error(error);
@@ -43,10 +44,10 @@ export async function edit_authcode(id, created_at, product_name, system_num, au
             if (cur[i].id === id) {
                 return [...cur.slice(0, i), { created_at,
                     product_name, system_num, auth_num, company_name, auth_start_date,
-                    auth_end_date, system_name, case_name, id: id
+                    auth_end_date, system_name, case_name, remarks, id: id
                 }, ...cur.slice(i + 1)];
             } else {
-                return cur
+                return cur;
             }
         }
     })

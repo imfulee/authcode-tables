@@ -22,7 +22,8 @@
 		auth_start_date = '',
 		auth_end_date = '',
 		system_name = '',
-		case_name = '';
+		case_name = '',
+		remarks = '';
 	const toggle = () => (open = !open);
 
 	function handle_submit() {
@@ -37,7 +38,8 @@
 				auth_start_date,
 				auth_end_date,
 				system_name,
-				case_name
+				case_name, 
+				remarks
 			);
 			product_name = '';
 			system_num = '';
@@ -47,6 +49,7 @@
 			auth_end_date = '';
 			system_name = '';
 			case_name = '';
+			remarks = '';
 			toggle();
 		} else {
 			alert('開始日期不能比結束日期晚');
@@ -139,6 +142,16 @@
 						id="case_name"
 						placeholder=""
 						bind:value={case_name}
+					/>
+				</FormGroup>
+				<FormGroup>
+					<Label for="system_name">備注</Label>
+					<Input
+						type="text"
+						name="case_name"
+						id="case_name"
+						placeholder=""
+						bind:value={remarks}
 					/>
 				</FormGroup>
 			</Form>

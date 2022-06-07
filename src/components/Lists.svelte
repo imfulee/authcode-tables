@@ -5,22 +5,23 @@
 
 	import ListElem from './ListElem.svelte';
 	let searched_authcodes;
-	$: searched_authcodes = $authcodes.filter((code) => code.product_name == $search_term || code.system_num == $search_term || code.auth_num == $search_term || code.company_name == $search_term || code.auth_start_date == $search_term || code.auth_end_date == $search_term || code.system_name == $search_term || code.case_name == $search_term );
+	$: searched_authcodes = $authcodes.filter((code) => code.product_name == $search_term || code.system_num == $search_term || code.auth_num == $search_term || code.company_name == $search_term || code.auth_start_date == $search_term || code.auth_end_date == $search_term || code.system_name == $search_term || code.case_name == $search_term || code.remarks == $search_term);
 </script>
 
 <Table responsive hover bordered id="authcode_table">
 	<thead>
 		<tr>
-			<th>產品名字</th>
-			<th>系統編號</th>
-			<th>公司</th>
-			<th>授權碼</th>
-			<th>授權開始日期</th>
-			<th>授權結束日期</th>
-			<th>系統名字</th>
-			<th>案件名字</th>
-			<th>修改</th>
-			<th>刪除</th>
+			<th class="text-nowrap">產品名字</th>
+			<th class="text-nowrap">系統編號</th>
+			<th class="text-nowrap">公司</th>
+			<th class="text-nowrap">授權碼</th>
+			<th class="text-nowrap">授權開始日期</th>
+			<th class="text-nowrap">授權結束日期</th>
+			<th class="text-nowrap">系統名字</th>
+			<th class="text-nowrap">案件名字</th>
+			<th class="text-nowrap">備注</th>
+			<th class="text-nowrap">修改</th>
+			<th class="text-nowrap">刪除</th>
 		</tr>
 	</thead>
 	<tbody>
