@@ -16,20 +16,26 @@
 	let open = false;
 	const toggle = () => (open = !open);
 	function handle_edit() {
-		edit_authcode(
-			authcode.id,
-			authcode.created_at,
-			authcode.product_name,
-			authcode.system_num,
-			authcode.auth_num,
-			authcode.company_name,
-			authcode.auth_start_date,
-			authcode.auth_end_date,
-			authcode.system_name,
-			authcode.case_name
-		);
+		if (!authcode.auth_start_date || !authcode.auth_end_date) {
+			alert('必須輸入日期');
+		} else if (authcode.auth_end_date >= authcode.auth_start_date) {
+			edit_authcode(
+				authcode.id,
+				authcode.created_at,
+				authcode.product_name,
+				authcode.system_num,
+				authcode.auth_num,
+				authcode.company_name,
+				authcode.auth_start_date,
+				authcode.auth_end_date,
+				authcode.system_name,
+				authcode.case_name
+			);
 
-		toggle();
+			toggle();
+		} else {
+			alert('開始日期不能比結束日期晚');
+		}
 	}
 </script>
 
@@ -81,7 +87,13 @@
 				</FormGroup>
 				<FormGroup>
 					<Label for="auth_num">授權碼</Label>
-					<Input type="text" name="auth_num" id="auth_num" placeholder="" bind:value={authcode.auth_num} />
+					<Input
+						type="text"
+						name="auth_num"
+						id="auth_num"
+						placeholder=""
+						bind:value={authcode.auth_num}
+					/>
 				</FormGroup>
 				<FormGroup>
 					<Label for="auth_start_date">授權開始日期</Label>
