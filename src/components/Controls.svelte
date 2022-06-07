@@ -26,14 +26,16 @@
 	const toggle = () => (open = !open);
 
 	function handle_submit() {
-		if (auth_end_date >= auth_start_date) {
+		if (!auth_start_date || !auth_end_date){
+			alert("必須輸入日期");
+		} else if (auth_end_date >= auth_start_date) {
 			add_authcode(
 				product_name,
 				system_num,
 				auth_num,
 				company_name,
-				Date.parse(auth_start_date),
-				Date.parse(auth_end_date),
+				auth_start_date,
+				auth_end_date,
 				system_name,
 				case_name
 			);

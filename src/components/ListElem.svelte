@@ -23,8 +23,8 @@
 			authcode.system_num,
 			authcode.auth_num,
 			authcode.company_name,
-			Date.parse(authcode.auth_start_date),
-			Date.parse(authcode.auth_end_date),
+			authcode.auth_start_date,
+			authcode.auth_end_date,
 			authcode.system_name,
 			authcode.case_name
 		);
