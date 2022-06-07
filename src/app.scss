@@ -1,12 +1,23 @@
+$mobile_screen_size: 900px;
+
 div.content_body {
     padding-top: 1em;
     display: grid;
     row-gap: 1em;
 }
 
-div#authcode_controls {
-    display: grid;
-    grid-template-columns: 10% 60% auto;
+@media only screen and (max-width: $mobile_screen_size) {
+    div#authcode_controls {
+        display: grid;
+        grid-template-columns: 10% 20% auto;
+    }
+}
+
+@media only screen and (min-width: $mobile_screen_size) {
+    div#authcode_controls {
+        display: grid;
+        grid-template-columns: 10% 60% auto;
+    }
 }
 
 div#add_authcode_button{

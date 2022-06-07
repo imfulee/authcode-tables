@@ -4,11 +4,18 @@ div.content_body {
   row-gap: 1em;
 }
 
-div#authcode_controls {
-  display: grid;
-  grid-template-columns: 10% 60% auto;
+@media only screen and (max-width: 900px) {
+  div#authcode_controls {
+    display: grid;
+    grid-template-columns: 10% 20% auto;
+  }
 }
-
+@media only screen and (min-width: 900px) {
+  div#authcode_controls {
+    display: grid;
+    grid-template-columns: 10% 60% auto;
+  }
+}
 div#add_authcode_button {
   place-self: center;
 }
