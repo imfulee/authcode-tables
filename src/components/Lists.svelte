@@ -12,14 +12,13 @@
 	<thead>
 		<tr>
 			<th class="text-nowrap">產品名字</th>
-			<th class="text-nowrap">系統編號</th>
-			<th class="text-nowrap">公司</th>
-			<th class="text-nowrap">授權碼</th>
-			<th class="text-nowrap">授權開始日期</th>
-			<th class="text-nowrap">授權結束日期</th>
 			<th class="text-nowrap">系統名字</th>
 			<th class="text-nowrap">案件名字</th>
+			<th class="text-nowrap">授權開始日期</th>
+			<th class="text-nowrap">授權結束日期</th>
+			<th class="text-nowrap">公司名字</th>
 			<th class="text-nowrap">備注</th>
+			<th class="text-nowrap">查看</th>
 			<th class="text-nowrap">修改</th>
 			<th class="text-nowrap">刪除</th>
 		</tr>

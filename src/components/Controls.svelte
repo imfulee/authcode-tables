@@ -18,7 +18,7 @@
 	let product_name = '',
 		system_num = '',
 		auth_num = '',
-		company_name = '',
+		company_name = '兆徠科技股份有限公司',
 		auth_start_date = '',
 		auth_end_date = '',
 		system_name = '',
@@ -44,7 +44,7 @@
 			product_name = '';
 			system_num = '';
 			auth_num = '';
-			company_name = '';
+			company_name = '兆徠科技股份有限公司';
 			auth_start_date = '';
 			auth_end_date = '';
 			system_name = '';
@@ -80,9 +80,29 @@
 					/>
 				</FormGroup>
 				<FormGroup>
-					<Label for="system_num">系統編號</Label>
+					<Label for="case_name">案件名字</Label>
 					<Input
 						type="text"
+						name="case_name"
+						id="case_name"
+						placeholder=""
+						bind:value={case_name}
+					/>
+				</FormGroup>
+				<FormGroup>
+					<Label for="system_name">系統名字</Label>
+					<Input
+						type="text"
+						name="system_name"
+						id="system_name"
+						placeholder=""
+						bind:value={system_name}
+					/>
+				</FormGroup>
+				<FormGroup>
+					<Label for="system_num">系統編號</Label>
+					<Input
+						type="textarea"
 						name="system_num"
 						id="system_num"
 						placeholder=""
@@ -90,7 +110,7 @@
 					/>
 				</FormGroup>
 				<FormGroup>
-					<Label for="company_name">公司</Label>
+					<Label for="company_name">公司名字</Label>
 					<Input
 						type="text"
 						name="company_name"
@@ -101,7 +121,7 @@
 				</FormGroup>
 				<FormGroup>
 					<Label for="auth_num">授權碼</Label>
-					<Input type="text" 
+					<Input type="textarea" 
 							name="auth_num" id="auth_num" placeholder="" bind:value={auth_num} />
 				</FormGroup>
 				<FormGroup>
@@ -123,33 +143,13 @@
 						placeholder=""
 						bind:value={auth_end_date}
 					/>
-				</FormGroup>
+				</FormGroup>	
 				<FormGroup>
-					<Label for="system_name">系統名字</Label>
+					<Label for="remarks">備注</Label>
 					<Input
-						type="text"
-						name="system_name"
-						id="system_name"
-						placeholder=""
-						bind:value={system_name}
-					/>
-				</FormGroup>
-				<FormGroup>
-					<Label for="system_name">案件名字</Label>
-					<Input
-						type="text"
-						name="case_name"
-						id="case_name"
-						placeholder=""
-						bind:value={case_name}
-					/>
-				</FormGroup>
-				<FormGroup>
-					<Label for="system_name">備注</Label>
-					<Input
-						type="text"
-						name="case_name"
-						id="case_name"
+						type="textarea"
+						name="remarks"
+						id="remarks"
 						placeholder=""
 						bind:value={remarks}
 					/>
