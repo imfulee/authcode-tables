@@ -9,7 +9,8 @@ div.content_body {
 @media only screen and (max-width: $mobile_screen_size) {
     div#authcode_controls {
         display: grid;
-        grid-template-columns: 10% 20% auto;
+        grid-template-columns: 20% auto;
+        column-gap: 5px;
     }
 }
 
