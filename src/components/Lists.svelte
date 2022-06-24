@@ -1,5 +1,5 @@
 <script>
-	import { Table, Button, Icon } from 'sveltestrap';
+	import { Table, Button, Icon } from 'sveltestrap/src';
 	import { authcodes, delete_authcode } from '../stores/authcode_store.js';
 	import { search_term } from '../stores/search_store.js';
 
