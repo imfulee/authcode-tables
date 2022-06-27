@@ -2,20 +2,15 @@ import { writable } from 'svelte/store';
 import { supabase } from '../supabase.js';
 
 export const user = writable({});
+export const users_list = writable([]);
 
-export async function load_users(username, password){
-    const { data, error } = await supabase
-        .from('auth_user')
-        .select('username, permission_edit')
-        .eq('username', username)
-        .eq('password', password);
+export async function load_users() {
+    const { data, error } = await supabase.from('auth_user').select();
 
     if (error) {
         return console.error(error);
     }
-
-    user.set(data[0]);
-    return data ? data[0] : false;
+    users_list.set(data);
 }
 
 export async function add_user(username, password) {
@@ -24,6 +19,21 @@ export async function add_user(username, password) {
     if (error) {
         return console.error(error);
     }
+}
+
+export async function login_user(username, password) {
+    const { data, error } = await supabase
+        .from('auth_user')
+        .select()
+        .eq('username', username)
+        .eq('password', password);
+
+    if (error) {
+        return console.error(error);
+    }
+
+    user.set(data[0]);
+    return true
 }
 
 export function logout_user() {

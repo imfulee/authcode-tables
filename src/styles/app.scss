@@ -1,5 +1,6 @@
 $mobile_screen_size: 768px;
 
+
 div.content_body {
     padding-top: 1em;
     display: grid;
@@ -33,11 +34,21 @@ div#add_authcode_button {
     place-self: center;
 }
 
-table#authcode_table {
+table#authcode_table,
+table#permission_table {
     overflow-x: auto;
+}
+
+table#permission_table {
+    margin-top: 1rem;
 }
 
 #searchbar_inputgroup {
     grid-column-start: 3;
 }
 
+.permission_groups {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: space-between;
+}
