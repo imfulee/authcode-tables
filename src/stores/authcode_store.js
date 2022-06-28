@@ -13,8 +13,7 @@ export const load_authcode = async() => {
 load_authcode();
 
 export async function add_authcode(product_name, system_num, auth_num, company_name, auth_start_date, auth_end_date, system_name, case_name, remarks) {
-    let created_at = null;
-    const { data, error } = await supabase.from('authcode_table').insert([{ created_at, product_name, system_num, auth_num, company_name, auth_start_date, auth_end_date, system_name, case_name, remarks }]);
+    const { data, error } = await supabase.from('authcode_table').insert([{ product_name, system_num, auth_num, company_name, auth_start_date, auth_end_date, system_name, case_name, remarks }]);
 
     if (error) {
         return console.error(error);
