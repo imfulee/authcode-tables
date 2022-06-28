@@ -12,16 +12,15 @@
 <Styles />
 
 <main>
-	<Headers />
+	<Headers bind:value={permission_page} onChange={(newValue) => (permission_page = newValue)} />
 	<Auth>
 		{#if permission_page}
+			<Permission />
+		{:else}
 			<div class="content_body">
 				<Controls />
 				<Lists />
 			</div>
-		{:else}
-			<Permission />
 		{/if}
 	</Auth>
-	<Permission />
 </main>

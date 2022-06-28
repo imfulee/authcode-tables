@@ -12,7 +12,8 @@
 		InputGroup
 	} from 'sveltestrap/src';
 	import { add_authcode } from '../stores/authcode_store.js';
-	import {update_searchterm} from "../stores/search_store.js";
+	import { update_searchterm } from '../stores/search_store.js';
+	import { user } from '../stores/user_store.js';
 	let open = false;
 	let search_term_local = '';
 	let product_name = '',
@@ -27,8 +28,8 @@
 	const toggle = () => (open = !open);
 
 	function handle_submit() {
-		if (!auth_start_date || !auth_end_date){
-			alert("必須輸入日期");
+		if (!auth_start_date || !auth_end_date) {
+			alert('必須輸入日期');
 		} else if (auth_end_date >= auth_start_date) {
 			add_authcode(
 				product_name,
@@ -38,7 +39,7 @@
 				auth_start_date,
 				auth_end_date,
 				system_name,
-				case_name, 
+				case_name,
 				remarks
 			);
 			product_name = '';
@@ -59,9 +60,17 @@
 
 <div>
 	<div id="authcode_controls">
-		<Button color="primary" id="add_authcode_button" on:click={toggle}>新增</Button>
+		{#if $user.permission_authcode_add}
+			<Button class="text-nowrap" color="primary" id="add_authcode_button" on:click={toggle}>新增</Button>
+		{/if}
 		<InputGroup id="searchbar_inputgroup">
-			<Input type="search" name="search" id="searchbar" placeholder="搜尋" bind:value={search_term_local} />
+			<Input
+				type="search"
+				name="search"
+				id="searchbar"
+				placeholder="搜尋"
+				bind:value={search_term_local}
+			/>
 			<Button color="primary" on:click={() => update_searchterm(search_term_local)}>搜尋</Button>
 		</InputGroup>
 	</div>
@@ -121,8 +130,13 @@
 				</FormGroup>
 				<FormGroup>
 					<Label for="auth_num">授權碼</Label>
-					<Input type="textarea" 
-							name="auth_num" id="auth_num" placeholder="" bind:value={auth_num} />
+					<Input
+						type="textarea"
+						name="auth_num"
+						id="auth_num"
+						placeholder=""
+						bind:value={auth_num}
+					/>
 				</FormGroup>
 				<FormGroup>
 					<Label for="auth_start_date">授權開始日期</Label>
@@ -143,16 +157,10 @@
 						placeholder=""
 						bind:value={auth_end_date}
 					/>
-				</FormGroup>	
+				</FormGroup>
 				<FormGroup>
 					<Label for="remarks">備注</Label>
-					<Input
-						type="textarea"
-						name="remarks"
-						id="remarks"
-						placeholder=""
-						bind:value={remarks}
-					/>
+					<Input type="textarea" name="remarks" id="remarks" placeholder="" bind:value={remarks} />
 				</FormGroup>
 			</Form>
 		</ModalBody>

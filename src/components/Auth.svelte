@@ -1,33 +1,20 @@
 <script>
 	import { Button, Input, Form, FormGroup, Icon } from 'sveltestrap/src';
-	import { add_user, load_users, logout_user } from '../stores/user_store.js';
+	import { user, login_user, logout_user } from '../stores/user_store.js';
+
 	let username = '',
 		password = '';
 	let logged_in = false;
 	let user_prof;
 
-	function handle_register() {
-		if (username && password) {
-			add_user(username, password);
-			username = '';
-			password = '';
-		} else {
-			alert('沒有完整輸入注冊的帳號密碼');
-		}
-	}
-
+	$: user;
 	async function handle_login() {
-		if (username && password) {
-			user_prof = await load_users(username, password);
-			if (user_prof) {
-				username = user_prof['username'];
-				password = '';
-				logged_in = true;
-			} else {
-				alert('帳號或者密碼輸入錯誤');
-			}
+		user_prof = await login_user(username, password);
+		if (user_prof) {
+			password = '';
+			logged_in = true;
 		} else {
-			alert('沒有完整輸入登錄的帳號密碼');
+			alert('帳號或者密碼輸入錯誤');
 		}
 	}
 
@@ -50,19 +37,15 @@
 		</Form>
 		<div>
 			<Button color="primary" on:click={handle_login}>登入</Button>
-			<Button color="light" on:click={handle_register}>注冊</Button>
 		</div>
 	</div>
 {:else}
 	<div id="logged_in_bar">
-		<Button color="light">管理帳號</Button>
-		<div id="user_ctrl">
-			<div id="username_display">
-				<Icon name="people-fill" />
-				<span>{username}</span>
-			</div>
-			<Button color="danger" on:click={handle_logout}>登出</Button>
+		<div id="username_display">
+			<Icon name="people-fill" />
+			<span>{username}</span>
 		</div>
+		<Button color="danger" on:click={handle_logout}>登出</Button>
 	</div>
 	<slot />
 {/if}
@@ -79,12 +62,6 @@
 	#username_display {
 		display: flex;
 		align-items: center;
-		gap: 5px;
-	}
-	#user_ctrl {
-		display: flex;
-		align-items: center;
-		justify-content: end;
 		gap: 5px;
 	}
 </style>

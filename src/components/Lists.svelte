@@ -2,10 +2,22 @@
 	import { Table, Button, Icon } from 'sveltestrap/src';
 	import { authcodes, delete_authcode } from '../stores/authcode_store.js';
 	import { search_term } from '../stores/search_store.js';
+	import { user } from '../stores/user_store.js';
 
 	import ListElem from './ListElem.svelte';
 	let searched_authcodes;
-	$: searched_authcodes = $authcodes.filter((code) => code.product_name == $search_term || code.system_num == $search_term || code.auth_num == $search_term || code.company_name == $search_term || code.auth_start_date == $search_term || code.auth_end_date == $search_term || code.system_name == $search_term || code.case_name == $search_term || code.remarks == $search_term);
+	$: searched_authcodes = $authcodes.filter(
+		(code) =>
+			code.product_name == $search_term ||
+			code.system_num == $search_term ||
+			code.auth_num == $search_term ||
+			code.company_name == $search_term ||
+			code.auth_start_date == $search_term ||
+			code.auth_end_date == $search_term ||
+			code.system_name == $search_term ||
+			code.case_name == $search_term ||
+			code.remarks == $search_term
+	);
 </script>
 
 <Table responsive hover bordered id="authcode_table">
@@ -19,8 +31,12 @@
 			<th class="text-nowrap">公司名字</th>
 			<th class="text-nowrap">備注</th>
 			<th class="text-nowrap">查看</th>
-			<th class="text-nowrap">修改</th>
-			<th class="text-nowrap">刪除</th>
+			{#if $user.permission_authcode_edit}
+				<th class="text-nowrap">修改</th>
+			{/if}
+			{#if $user.permission_authcode_delete}
+				<th class="text-nowrap">刪除</th>
+			{/if}
 		</tr>
 	</thead>
 	<tbody>
@@ -28,22 +44,26 @@
 			{#each $authcodes as authcode (authcode.id)}
 				<tr>
 					<ListElem {authcode} />
-					<td>
-						<Button color="danger" on:click={() => delete_authcode(authcode.id)}>
-							<Icon name="trash" />
-						</Button>
-					</td>
+					{#if $user.permission_authcode_delete}
+						<td>
+							<Button color="danger" on:click={() => delete_authcode(authcode.id)}>
+								<Icon name="trash" />
+							</Button>
+						</td>
+					{/if}
 				</tr>
 			{/each}
 		{:else}
 			{#each searched_authcodes as authcode (authcode.id)}
 				<tr>
 					<ListElem {authcode} />
-					<td>
-						<Button color="danger" on:click={() => delete_authcode(authcode.id)}>
-							<Icon name="trash" />
-						</Button>
-					</td>
+					{#if $user.permission_authcode_delete}
+						<td>
+							<Button color="danger" on:click={() => delete_authcode(authcode.id)}>
+								<Icon name="trash" />
+							</Button>
+						</td>
+					{/if}
 				</tr>
 			{/each}
 		{/if}

@@ -4,21 +4,21 @@ div.content_body {
   row-gap: 1em;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 575px) {
   div#authcode_controls {
-    display: grid;
-    grid-template-columns: 20% auto;
-    column-gap: 5px;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
   }
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 575px) {
   #login_boxes {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
   }
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 575px) {
   div#authcode_controls {
     display: grid;
     grid-template-columns: 10% 60% auto;

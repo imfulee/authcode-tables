@@ -1,5 +1,6 @@
 <script>
 	import { edit_authcode } from '../stores/authcode_store.js';
+	import {user} from '../stores/user_store.js';
 	import {
 		Button,
 		Icon,
@@ -163,6 +164,7 @@
 		</ModalBody>
 	</Modal>
 </td>
+{#if $user.permission_authcode_edit}
 <td>
 	<Button color="primary" on:click={() => toggle()}>
 		<Icon name="pencil-square" />
@@ -269,3 +271,4 @@
 		</ModalFooter>
 	</Modal>
 </td>
+{/if}

@@ -1,4 +1,4 @@
-$mobile_screen_size: 768px;
+$mobile_screen_size: 575px;
 
 
 div.content_body {
@@ -9,13 +9,13 @@ div.content_body {
 
 @media only screen and (max-width: $mobile_screen_size) {
     div#authcode_controls {
-        display: grid;
-        grid-template-columns: 20% auto;
-        column-gap: 5px;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
     }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $mobile_screen_size) {
 	#login_boxes {
         display: grid;
         grid-template-columns: 1fr 1fr;
