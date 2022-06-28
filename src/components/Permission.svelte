@@ -146,10 +146,10 @@
 			<td colspan="1" />
 			<td colspan="3" style="text-align: center">授權碼</td>
 			<td colspan="3" style="text-align: center">使用者</td>
-			{#if $user.permission_user_edit ^ $user.permission_user_delete}
-				<td colspan="1" />
-			{:else}
+			{#if $user.permission_user_edit && $user.permission_user_delete}
 				<td colspan="2" />
+			{:else if $user.permission_user_edit || $user.permission_user_delete}
+				<td colspan="1" />
 			{/if}
 		</tr>
 		<tr>
