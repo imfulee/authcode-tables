@@ -142,13 +142,31 @@
 
 <Table responsive hover bordered id="permission_table">
 	<thead>
-		<td class="text-nowrap">帳號</td>
-		{#if $user.permission_user_edit}
-			<td class="text-nowrap">編輯</td>
-		{/if}
-		{#if $user.permission_user_delete}
+		<tr>
+			<td colspan="1" />
+			<td colspan="3" style="text-align: center">授權碼</td>
+			<td colspan="3" style="text-align: center">使用者</td>
+			{#if $user.permission_user_edit ^ $user.permission_user_delete}
+				<td colspan="1" />
+			{:else}
+				<td colspan="2" />
+			{/if}
+		</tr>
+		<tr>
+			<td class="text-nowrap">帳號</td>
+			<td class="text-nowrap">新增</td>
+			<td class="text-nowrap">修改</td>
 			<td class="text-nowrap">刪除</td>
-		{/if}
+			<td class="text-nowrap">新增</td>
+			<td class="text-nowrap">修改</td>
+			<td class="text-nowrap">刪除</td>
+			{#if $user.permission_user_edit}
+				<td class="text-nowrap">編輯</td>
+			{/if}
+			{#if $user.permission_user_delete}
+				<td class="text-nowrap">刪除</td>
+			{/if}
+		</tr>
 	</thead>
 	<tbody>
 		{#each $users_list as user_info (user_info.id)}

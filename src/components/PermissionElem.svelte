@@ -59,6 +59,36 @@
 
 <tr>
 	<td>{username}</td>
+	{#if permission_authcode_add}
+		<td style="background-color: green" />
+	{:else}
+		<td style="background-color: red" />
+	{/if}
+	{#if permission_authcode_edit}
+		<td style="background-color: green" />
+	{:else}
+		<td style="background-color: red" />
+	{/if}
+	{#if permission_authcode_delete}
+		<td style="background-color: green" />
+	{:else}
+		<td style="background-color: red" />
+	{/if}
+	{#if permission_user_add}
+		<td style="background-color: green" />
+	{:else}
+		<td style="background-color: red" />
+	{/if}
+	{#if permission_user_edit}
+		<td style="background-color: green" />
+	{:else}
+		<td style="background-color: red" />
+	{/if}
+	{#if permission_user_delete}
+		<td style="background-color: green" />
+	{:else}
+		<td style="background-color: red" />
+	{/if}
 	{#if $user.permission_user_edit}
 		<td>
 			<Button on:click={toggle} color="primary">
